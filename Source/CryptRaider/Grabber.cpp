@@ -36,5 +36,28 @@ FVector Start = GetComponentLocation();
 FVector End = Start + GetForwardVector() * MaxGrabDistance;
 
 	DrawDebugLine(GetWorld(), Start, End, FColor:: Red);
+
+	FCollisionShape Sphere = FCollisionShape:: MakeSphere(GrabRadius);
+
+	FHitResult HitResult;
+	bool HasHit = GetWorld()->SweepSingleByChannel(
+		HitResult, 
+		Start, 
+		End, 
+		FQuat::Identity,
+		ECC_GameTraceChannel2, 
+		Sphere
+	);
+
+	if(HasHit)
+	{
+		AActor* HitActor = HitResult.GetActor();
+		UE_LOG(LogTemp, Display, TEXT("Hit Actor: %s"), *HitActor-> GetActorNameOrLabel());
+	}
+	else
+	{
+		UE_LOG(LogTemp, Display, TEXT("No Actor Hit"));
+	}
+
 }
 
