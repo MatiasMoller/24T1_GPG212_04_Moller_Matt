@@ -106,9 +106,7 @@ bool UGrabber::GetGrabbableInReach(FHitResult& OutHitResult) const
 
 FVector End = Start + GetForwardVector() * MaxGrabDistance;
 
-	DrawDebugLine(GetWorld(), Start, End, FColor:: Red);
-	DrawDebugSphere(GetWorld(), End, 10, 10, FColor:: Blue, false, 3);
-
+	
 	FCollisionShape Sphere = FCollisionShape:: MakeSphere(GrabRadius);
 
 	
